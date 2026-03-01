@@ -7,6 +7,8 @@ from bs4 import BeautifulSoup
 
 if len(sys.argv) == 2:
     url = sys.argv[1]
+    if not url.startswith("http://") and not url.startswith("https://"):
+        url = "https://" + url
     headers = {"User-Agent": "Mozilla/5.0"}
     response = requests.get(url, headers=headers)
     html = response.text
@@ -89,7 +91,6 @@ elif len(sys.argv) == 3:
     #Actualfrequencies for both urls
     url1 = sys.argv[1]
     url2 = sys.argv[2]
-
     freq1 = word_frequency(url1)
     freq2 = word_frequency(url2)
 
